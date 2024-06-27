@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>植物大战僵尸 - 僵尸图鉴</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!--导航区nav-->
+    <div class="nav">
+        <!-- 定义导航栏内容 -->
+        <ul id="menu">
+            <li>
+                <a href="./index.html">首页</a>
+            </li>
+            <span>|</span>
+            <li>
+                <a href="./resume.html">游戏介绍</a>
+            </li>
+            <span>|</span>
+
+            <li>
+                <a href="./PlantIllustration.html">植物图鉴</a>
+            </li>
+            <span>|</span>
+
+            <li>
+                <a href="./ZombieIllustration.html">僵尸图鉴</a>
+            </li>
+            <span>|</span>
+
+            <li>
+                <a href="./GamingStrategy.html">游戏攻略</a>
+            </li>
+            <span>|</span>
+
+            <li>
+                <a href="./message.html">用户留言</a>
+            </li>
+        </ul>
+    </div>
+    <!--导航区结束-->
+    <!--图鉴区开始-->
+    <div class="container">
+        <p><span>植物大战僵尸杂交版</span></p>
+
+        <div class="plant-container">
+            <div class="plant active">
+                <img src="./image/男大学生.png" alt="男大学生">
+                <div class="plant-name">男大学生</div>
+                <ul>
+                    <li>有时候僵尸只是不想起床。</li>
+                    <li>貌似戴夫博士最近从游戏里得到了启发，他把一个僵尸洗脑，成功让他迷恋上了睡觉和滑雪。尽管这里根本就没有雪。</li>
+                </ul>
+            </div>
+            <div class="plant">
+                <img src="./image/宾利巨人.png" alt="宾利巨人">
+                <div class="plant-name">宾利巨人</div>
+                <ul>
+                    <li>冰车巨人僵尸碾过你的植物，并留下一条冰道。</li>
+                    <li>退休的冰车僵尸用毕生所学传教伽刚特尔，并为他定制了一辆巨型冰车。</li>
+                </ul>
+            </div>
+            <div class="plant">
+                <img src="./image/僵王博士.png" alt="僵王博士">
+                <div class="plant-name">僵王博士</div>
+                <ul>
+                    <li>戴夫博士是新的僵尸统治者。</li>
+                    <li>在一个月黑风高的夜晚，戴夫谋杀了埃德加博士，他改造了机甲，成为了新的僵尸之王。至于为什么他会变成僵尸?“你得先问我为什么能杂交植物”僵王戴夫说，“我用自己做实验品”。</li>
+                </ul>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="prev">上一个</button>
+            <button class="next">下一个</button>
+        </div>
+        <!--图鉴区结束-->
+    </div>
+    <script>
+        const plantContainer = document.querySelector('.plant-container');
+        const plants = plantContainer.querySelectorAll('.plant');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        let currentPlant = 0;
+
+        function showPlant(index) {
+            plants.forEach(plant => plant.classList.remove('active'));
+            plants[index].classList.add('active');
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentPlant = (currentPlant - 1 + plants.length) % plants.length;
+            showPlant(currentPlant);
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentPlant = (currentPlant + 1) % plants.length;
+            showPlant(currentPlant);
+        });
+
+        showPlant(currentPlant); 
+    </script>
+</body>
+
+</html>

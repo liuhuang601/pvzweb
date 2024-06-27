@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>植物大战僵尸 - 用户留言</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/message.css">
+</head>
+
+<body>
+    <!--导航区nav-->
+    <div class="nav">
+        <!-- 定义导航栏内容 -->
+        <ul id="menu">
+            <li>
+                <a href="./index.html">首页</a>
+            </li>
+            <span>|</span>
+            <li>
+                <a href="./resume.html">游戏介绍</a>
+            </li>
+            <span>|</span>
+
+            <li>
+                <a href="./PlantIllustration.html">植物图鉴</a>
+            </li>
+            <span>|</span>
+
+            <li>
+                <a href="./ZombieIllustration.html">僵尸图鉴</a>
+            </li>
+            <span>|</span>
+
+            <li>
+                <a href="./GamingStrategy.html">游戏攻略</a>
+            </li>
+            <span>|</span>
+
+            <li>
+                <a href="./message.html">用户留言</a>
+            </li>
+        </ul>
+    </div>
+    <!--导航区结束-->
+    <!--留言区开始-->
+    <div class="container1">
+        <p><span>用户留言板</span></p>
+        <div class="form">
+            <form id="messageForm">
+                <label for="username">用户名:</label>
+                <input type="text" id="username" name="username"><br>
+                <label for="message">留&nbsp;&nbsp;&nbsp;言:</label>
+                <textarea id="message" name="message" rows="4" cols="50"></textarea><br>
+                <button type="submit">提交</button>
+            </form>
+
+            <hr>
+
+            <div class="query">
+                <label for="queryUsername">查询用户留言:</label>
+                <input type="text" id="queryUsername" name="queryUsername">
+                <button id="queryButton">查询</button>
+            </div>
+
+            <div class="list-tab">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>用户名</th>
+                            <th>留言</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="messageList">
+                        <!-- 留言列表将插入在这里 -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+    <!--留言区结束-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // 加载所有留言
+        function loadMessages() {
+            axios.get('http://localhost:3000/messages')
+                .then(function (response) {
+                    displayMessages(response.data);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        }
+
+        // 显示留言列表
+        function displayMessages(messages) {
+            const messageList = document.getElementById('messageList');
+            messageList.innerHTML = '';
+            messages.forEach(function (message) {
+                const row = document.createElement('tr');
+                const usernameCell = document.createElement('td');
+                usernameCell.textContent = message.username;
+                const messageCell = document.createElement('td');
+                messageCell.textContent = message.message;
+                const actionCell = document.createElement('td');
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = '删除';
+                deleteButton.addEventListener('click', function () {
+                    deleteMessage(message.id);
+                });
+                const updateButton = document.createElement('button');
+                updateButton.textContent = '修改';
+                updateButton.addEventListener('click', function () {
+                    updateMessage(message.id, message.username);
+                });
+                actionCell.appendChild(deleteButton);
+                actionCell.appendChild(updateButton);
+                row.appendChild(usernameCell);
+                row.appendChild(messageCell);
+                row.appendChild(actionCell);
+                messageList.appendChild(row);
+            });
+        }
+
+        // 删除留言
+        function deleteMessage(id) {
+            axios.delete(`http://localhost:3000/messages/${id}`)
+                .then(function (response) {
+                    alert('留言删除成功！');
+                    loadMessages();
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+        }
+
+        // 修改留言
+    function updateMessage(id, username, currentMessage) {
+        const newMessage = prompt(`请输入用户 ${username} 的新留言:`, currentMessage);
+        if (newMessage !== null) {  // 如果用户点击取消按钮，prompt会返回null，这里判断如果不是null再执行
+            axios.put(`http://localhost:3000/messages/${id}`, {
+                message: newMessage
+            })
+            .then(function (response) {
+                alert('留言修改成功！');
+                loadMessages(); // 重新加载留言列表
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+        }
+    }
+
+        document.getElementById('messageForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const message = document.getElementById('message').value;
+
+            axios.post('http://localhost:3000/messages', {
+                username: username,
+                message: message
+            })
+            .then(function (response) {
+                alert('留言添加成功！');
+                loadMessages(); // 重新加载留言列表
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+        });
+
+        document.getElementById('queryButton').addEventListener('click', function () {
+            const queryUsername = document.getElementById('queryUsername').value;
+
+            axios.get(`http://localhost:3000/messages/user/${queryUsername}`)
+            .then(function (response) {
+                displayMessages(response.data);
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+        });
+
+        // 页面加载时获取所有留言
+        window.onload = function() {
+            loadMessages();
+        };
+    </script>
+</body>
+
+</html>

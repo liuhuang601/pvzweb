@@ -1,0 +1,347 @@
+/* 所有网页的整体框架 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 16px;
+    background-color: black;
+    background-image: url("../image/主页背景.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 100vh;
+    position: relative;
+}
+
+
+/** 页脚区，居中 **/
+.footer {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    font-weight: bolder;
+    color: black;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    line-height: 40px;
+    position: fixed;
+}
+
+/** 让四个盒子都采用左浮动的浮动布局,并且占满浏览器,消除内边距对整个盒子大小的影响**/
+.header,
+.nav,
+.content,
+.footer {
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/** 页眉区 **/
+.header {
+    padding: 10px;
+    background-color: rgb(48, 48, 47);
+}
+
+.logo {
+    float: left;
+    width: 45%;
+    text-align: right;
+}
+
+.title {
+    width: 40%;
+    float: left;
+    padding: 0 18px;
+    margin: 0px;
+    color: rgb(210, 31, 61);
+}
+
+.titles {
+    width: 35%;
+    float: left;
+    padding: 0 40px;
+    margin: 0px;
+    color: rgb(210, 31, 61);
+}
+
+/** 页眉区结束 **/
+
+/**导航区**/
+
+
+.nav {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/***对导航区使用flex弹性布局，居中***/
+#menu {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 25px 0;
+}
+
+#menu li {
+    list-style: none;
+    /* margin: 0 6%; */
+    margin: 0 20px;
+
+}
+
+/*** 消除下划线 ***/
+#menu li a {
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;
+    vertical-align: middle;
+
+}
+
+#menu span {
+    vertical-align: middle;
+    font-weight: bolder;
+}
+
+#menu li a:hover {
+    color: rgb(244, 43, 8);
+}
+
+/**导航区结束**/
+
+
+
+/** 页脚区结束 **/
+/* 所有网页整体框架结束 */
+
+/* 主页内容区 */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    /* background: #e2e2e2; */
+    margin: 0.5rem 0;
+    /* padding: 0.5rem; */
+    /* border-radius: 4px; */
+
+}
+
+
+#content_inner {
+    text-align: center;
+    padding: 5%;
+    color: rgb(132, 15, 205);
+}
+
+.motto {
+    font-size: 30px;
+    color: red;
+    font-weight: bolder;
+    padding: 10px 0;
+}
+
+
+
+audio {
+    display: none;
+}
+
+/*主页内容区结束*/
+
+/* 游戏介绍内容区 */
+/* body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+} */
+
+header {
+    padding: 1rem 0;
+}
+
+header p {
+    text-align: center;
+    margin-top: 80px;
+    font-size: 30px;
+    color: black;
+    font-weight: bolder;
+}
+
+header p span {
+    width: 340px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 20px;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.9);
+
+}
+
+section {
+    margin: 2rem auto;
+    padding: 1rem;
+    width: 80%;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    padding-bottom: 0.5rem;
+}
+
+
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.download-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    margin: 1rem 0;
+    background: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.download-button:hover {
+    background: #0056b3;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+    margin-top: 2rem;
+}
+
+/* 游戏介绍内容区结束 */
+/*植物图鉴内容开始*/
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    text-align: center;
+}
+
+
+
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.container p {
+    text-align: center;
+    font-size: 30px;
+    color: black;
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+
+.container p span {
+    margin-top: 30px;
+    width: 340px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 20px;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+
+
+/* 植物卡片容器 */
+.plant-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 植物卡片 */
+.plant {
+    display: none;
+    /* 默认隐藏所有植物卡片 */
+    width: 300px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* 显示当前活跃的植物卡片 */
+.plant.active {
+    display: block;
+    background-color: rgba(255, 255, 255);
+    padding: 24px;
+    border-radius: 25px;
+}
+
+/* 植物图片 */
+.plant img {
+    width: 100%;
+    max-height: 200px;
+    margin-bottom: 10px;
+}
+
+/* 植物名称 */
+.plant-name {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+/* 按钮组 */
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+}
+
+/* 按钮样式 */
+.buttons button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-weight: bolder;
+    background-color: #eee;
+    cursor: pointer;
+    opacity: 0.7;
+    user-select: none;
+}
+
+.buttons button:hover {
+    opacity: 1;
+
+}
+
+/*植物图鉴内容结束*/
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* 控制视频容器的高度 */
+    width: 100%;
+}
+
+.video-container video {
+    max-width: 80%;
+    max-height: 80%;
+}

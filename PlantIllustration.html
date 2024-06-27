@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>植物大战僵尸 - 植物图鉴</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!--导航区nav-->
+    <div class="nav">
+        <!-- 定义导航栏内容 -->
+        <ul id="menu">
+            <li>
+                <a href="./index.html">首页</a>
+            </li>
+            <span>|</span>
+            <li>
+                <a href="./resume.html">游戏介绍</a>
+            </li>
+            <span>|</span>
+
+            <li>
+                <a href="./PlantIllustration.html">植物图鉴</a>
+            </li>
+            <span>|</span>
+
+            <li>
+                <a href="./ZombieIllustration.html">僵尸图鉴</a>
+            </li>
+            <span>|</span>
+
+            <li>
+                <a href="./GamingStrategy.html">游戏攻略</a>
+            </li>
+            <span>|</span>
+
+            <li>
+                <a href="./message.html">用户留言</a>
+            </li>
+        </ul>
+    </div>
+    <!--导航区结束-->
+    <!--图鉴区开始-->
+    <div class="container">
+        <p><span>植物大战僵尸杂交版</span></p>
+
+        <div class="plant-container">
+            <div class="plant active">
+                <img src="./image/豆哥.png" alt="豆哥">
+                <div class="plant-name">豆哥</div>
+                <ul>
+                    <li>能发射一枚具有击退效果的大碗豆。</li>
+                    <li>把豌豆射手头的大模型搬到车上颇费力气，戴夫当时还闪了腰。然后他把一个豌豆荚放了进去......</li>
+                </ul>
+            </div>
+            <div class="plant">
+                <img src="./image/大炮.png" alt="大炮">
+                <div class="plant-name">大炮</div>
+                <ul>
+                    <li>点击大炮发射致命的毁灭炮弹。</li>
+                    <li>不是玉米炮而是毁灭菇，不是爆米花而是蘑菇云，毁灭加农炮总是搞不懂自己是哪个家族的。“我知道，蘑菇玉米汤！”一个小豌豆射手说。难道戴夫前天吃的是这个？</li>
+                </ul>
+            </div>
+            <div class="plant">
+                <img src="./image/向日葵女王.png" alt="向日葵女王">
+                <div class="plant-name">向日葵女王</div>
+                <ul>
+                    <li>发射追踪火球，产生大量阳光。</li>
+                    <li> 这是向日葵中最爱晒太阳的一只，被给予了王冠，成为了向日葵女王。“现在我可以随时吃免费的奶酪烧烤三明治了。”向日葵女王说。</li>
+                </ul>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="prev">上一个</button>
+            <button class="next">下一个</button>
+        </div>
+        <!--图鉴区结束-->
+    </div>
+    <script>
+        const plantContainer = document.querySelector('.plant-container');
+        const plants = plantContainer.querySelectorAll('.plant');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        let currentPlant = 0;
+
+        function showPlant(index) {
+            plants.forEach(plant => plant.classList.remove('active'));
+            plants[index].classList.add('active');
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentPlant = (currentPlant - 1 + plants.length) % plants.length;
+            showPlant(currentPlant);
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentPlant = (currentPlant + 1) % plants.length;
+            showPlant(currentPlant);
+        });
+
+        showPlant(currentPlant);
+
+    </script>
+</body>
+
+</html>
